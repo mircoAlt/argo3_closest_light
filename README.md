@@ -1,9 +1,10 @@
 # argo3_closest_light
-## INTRODUCTION ##
+## Introduction ##
 This project uses the argos-simulator to simulate robots who try to find their next charging stations.
 ## Getting started ##
 To compile & build the code, run
-```mkdir build
+```
+mkdir build
 cd build
 cmake -DCMAKE_BUILD_TYPE=Release ..
 make
@@ -21,14 +22,14 @@ You have many options to change the experiment by configuring the file ``closest
 Most configurations should be self-explanatory, however, configuring the usage of sensors is a bit more tricky:
 See the following line:
 ```
-        <gl lights="true" botsFc="1" botsOa="true" walls="true"/>
+      <gl lights="true" botsFc="1" botsOa="true" walls="true"/>
 ```
 The first options, ``lights="xyz"`` will tell the simulation whether the robots will know the position of the lights
 (and therefore the charging stations). If it is "true", the positions will be knows. If it is set to "false" the robots will try to
 detect the lights by using their "lights-sensors".
 
 The second option, ``botsFc="x"`` has three possible settings:
-* 0 means that robots will try to detect other robots via their "proximity-sesnors" to calculate the next charging station
+* 0 means that robots will try to detect other robots via their "proximity-sensors" to calculate the next charging station
 * 1 means that robots will **know** all other robots to calculate the next charging station
 * 2 means that robots will ignore the other robots and go to the nearest charging station
 
