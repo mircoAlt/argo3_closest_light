@@ -2,6 +2,8 @@
 ## Introduction ##
 This project uses the argos-simulator to simulate robots who try to find their next charging stations.
 ## Getting started ##
+Make sure that you have installed the [lootbot](https://github.com/mircoAlt/argo3-lootbot) before running this example!
+
 To compile & build the code, run
 ```
 mkdir build
@@ -19,8 +21,8 @@ argos3 -c experiments/closest.argos
 ## Configuration ##
 
 You have many options to change the experiment by configuring the file ``closest.argos``.
-Most configurations should be self-explanatory, however, configuring the usage of sensors is a bit more tricky:
-See the following line:
+Most configurations should be self-explanatory, however, configuring the usage of sensors is a bit more tricky.
+Consider the following line:
 ```
       <gl lights="true" botsFc="1" botsOa="true" walls="true"/>
 ```
