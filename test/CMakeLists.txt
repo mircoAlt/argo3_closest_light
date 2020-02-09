@@ -1,0 +1,2 @@
+add_executable(score_wheel_test score_wheel_test.cpp)
+target_link_libraries(score_wheel_test wall_at bot_at argos3core_simulator readings_service gtest_main)

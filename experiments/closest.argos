@@ -1,0 +1,126 @@
+<?xml version="1.0" ?>
+<argos-configuration>
+
+  <!-- ************************* -->
+  <!-- * General configuration * -->
+  <!-- ************************* -->
+  <framework>
+    <system threads="0" />
+    <experiment length="1000"
+                ticks_per_second="50"
+                random_seed="926139"/>
+  </framework>
+
+  <!-- *************** -->
+  <!-- * Controllers * -->
+  <!-- *************** -->
+  <controllers>
+
+    <lootbot_closest_light_controller id="ffc"
+                                 library="build/controllers/lootbot_closest_light/liblootbot_closest_light">
+      <actuators>
+        <differential_steering implementation="default" />
+        <leds                  implementation="default" medium="leds" />
+      </actuators>
+      <sensors>
+        <positioning implementation="default" />
+        <lootbot_light implementation="rot_z_only" show_rays="false" />
+        <lootbot_motor_ground implementation="rot_z_only" />
+        <lootbot_proximity implementation="default" show_rays="false"/>
+      </sensors>
+      <params>
+        <wheel_turning hard_turn_angle_threshold="90"
+                       no_turn_angle_threshold="10"
+                       max_speed="30" />
+        <battery random_walk_threshold="5000" capacity="7500"/>
+        <arena xLength="9.8" yLength="19.8"/>
+      </params>
+    </lootbot_closest_light_controller>
+
+  </controllers>
+
+    <!-- ****************** -->
+    <!-- * Loop functions * -->
+    <!-- ****************** -->
+    <loop_functions library="build/loop_functions/closest_light_loop_functions/libclosest_light_loop_functions"
+                    label="closest_light_loop_functions">
+        <closest />
+        <light dist="0.125" amount="4"/>
+        <gl lights="true" botsFc="1" botsOa="true" walls="true"/>
+        <arena xLength="9.8" yLength="19.8"/>
+    </loop_functions>
+
+  <!-- *********************** -->
+  <!-- * Arena configuration * -->
+  <!-- *********************** -->
+  <arena size="10,20,1" center="0,0,0.5">
+  <floor id="floor"
+     source="loop_functions"
+     pixels_per_meter="50" />
+
+    <box id="wall_north" size="9.8,0.1,0.5" movable="false">
+      <body position="0,9.9,0" orientation="0,0,0" />
+    </box>
+    <box id="wall_south" size="9.8,0.1,0.5" movable="false">
+      <body position="0,-9.9,0" orientation="0,0,0" />
+    </box>
+    <box id="wall_east" size="0.1,19.8,0.5" movable="false">
+      <body position="4.9,0,0" orientation="0,0,0" />
+    </box>
+    <box id="wall_west" size="0.1,19.8,0.5" movable="false">
+      <body position="-4.9,0,0" orientation="0,0,0" />
+    </box>
+
+    <distribute>
+      <position method="uniform" min="-4.9,-9.9,0" max="4.9,9.9,0" />
+      <orientation method="gaussian" mean="0,0,0" std_dev="360,0,0" />
+      <entity quantity="20" max_trials="100">
+        <loot-bot id="fb">
+          <controller config="ffc" />
+        </loot-bot>
+      </entity>
+    </distribute>
+    <!--<loot-bot id="fb0">
+      <controller config="ffc" />
+    <body position="0,0,0" orientation="0,0,0" />
+    </loot-bot>
+    <loot-bot id="fb1">
+      <controller config="ffc" />
+      <body position="-4.5,-0.62,0" orientation="0,0,0" />
+    </loot-bot>
+    <loot-bot id="fb2">
+          <controller config="ffc" />
+          <body position="-4.5,0.62,0" orientation="0,0,0" />
+        </loot-bot>-->
+
+  </arena>
+
+  <!-- ******************* -->
+  <!-- * Physics engines * -->
+  <!-- ******************* -->
+  <physics_engines>
+    <dynamics2d id="dyn2d" />
+  </physics_engines>
+
+  <!-- ********* -->
+  <!-- * Media * -->
+  <!-- ********* -->
+  <media>
+    <led id="leds" />
+  </media>
+
+  <!-- ****************** -->
+  <!-- * Visualization * -->
+  <!-- ****************** -->
+  <visualization>
+    <qt-opengl>
+      <camera>
+          <placement idx="0"
+                     position="0,0,6"
+                     look_at="0,0,0"
+                     lens_focal_length="10" />
+        </camera>
+    </qt-opengl>
+  </visualization>
+
+</argos-configuration>
