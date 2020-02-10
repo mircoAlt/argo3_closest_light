@@ -1,8 +1,8 @@
-# argo3_closest_light
+# argos3_closest_light
 ## Introduction ##
 This project uses the argos-simulator to simulate robots who try to find their next charging stations.
 ## Getting started ##
-Make sure that you have installed the [lootbot](https://github.com/mircoAlt/argo3-lootbot) before running this example!
+Make sure that you have installed the [lootbot](https://github.com/mircoAlt/argo3-lootbot) plugin before running this example!
 
 To compile & build the code, run
 ```
@@ -13,7 +13,7 @@ make
 cd ..
 ```
 
-To run the example, type
+To run the example, execute
 ```
 argos3 -c experiments/closest.argos
 ```
@@ -45,7 +45,7 @@ It will not know their position for obstacle avoidance.
 ## Results ##
 The simulation will end if
 * you hit the "terminate"-button
-* all robots die
+* all robots died
 * if it has run for 50000 ticks
 
 Afterwards the program will generate a file called ``closest_<random_seed>.txt`` which will look like this:
